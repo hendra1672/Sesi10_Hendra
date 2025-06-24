@@ -1,0 +1,195 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-24T00:47:25.370Z",
+    "end": "2025-06-24T00:47:44.137Z",
+    "duration": 18767,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5d4a1454-4f6d-4e0d-bea0-c5be4bc2bdf2",
+      "title": "",
+      "fullFile": "C:\\Users\\henun\\Sesi10_Hendra\\tests\\test_hooks.js",
+      "file": "\\tests\\test_hooks.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a97f34d6-d502-4a05-9a85-1bb49b391e18",
+          "title": "Google Search Test",
+          "fullFile": "C:\\Users\\henun\\Sesi10_Hendra\\tests\\test_hooks.js",
+          "file": "\\tests\\test_hooks.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Google Search Test\"",
+              "fullTitle": "Google Search Test \"before each\" hook in \"Google Search Test\"",
+              "timedOut": false,
+              "duration": 3126,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "console.log('Ini beforeEach() hook: Membuka URL');\nconst options = new chrome.Options();\noptions.addArguments('--incognito'); \ndriver = await new Builder()\n    .forBrowser('chrome')\n    .setChromeOptions(options)\n    .build();\nawait driver.get('https://www.saucedemo.com');",
+              "err": {},
+              "uuid": "0cfe0b4d-0e44-4109-a19a-03b21a339000",
+              "parentUUID": "a97f34d6-d502-4a05-9a85-1bb49b391e18",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Google Search Test\"",
+              "fullTitle": "Google Search Test \"after each\" hook in \"Google Search Test\"",
+              "timedOut": false,
+              "duration": 899,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "console.log('Ini afterEach() hook: Menutup driver');\nawait driver.sleep(750);       \nawait driver.quit();",
+              "err": {},
+              "uuid": "c0335009-52d8-4127-9473-35382e084606",
+              "parentUUID": "a97f34d6-d502-4a05-9a85-1bb49b391e18",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Test Case 1 - Web Address",
+              "fullTitle": "Google Search Test Test Case 1 - Web Address",
+              "timedOut": false,
+              "duration": 14,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const title = await driver.getTitle();\nassert.strictEqual(title,'Swag Labs');",
+              "err": {},
+              "uuid": "1a8f5893-4f71-4cf6-bd47-092375f7cf14",
+              "parentUUID": "a97f34d6-d502-4a05-9a85-1bb49b391e18",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test Case 2 - Login Negative Test Case",
+              "fullTitle": "Google Search Test Test Case 2 - Login Negative Test Case",
+              "timedOut": false,
+              "duration": 423,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let inputUsername = await driver.findElement(By.css('[data-test=\"username\"]'))\nlet inputPassword = await driver.findElement(By.xpath('//*[@data-test=\"password\"]'))\nlet buttonLogin = await driver.findElement(By.className('submit-button btn_action')) \nawait inputUsername.sendKeys('standard_us')\nawait inputPassword.sendKeys('secret_sauce')\nawait buttonLogin.click()\n    let errorMessageElement = await driver.wait(until.elementLocated(By.css('[data-test=\"error\"]')), 2000);\n    let actualErrorMessage = await errorMessageElement.getText();\n    assert.strictEqual(actualErrorMessage, 'Epic sadface: Username and password do not match any user in this service', 'Pesan error tidak sesuai');",
+              "err": {},
+              "uuid": "a3014615-9dc7-41cc-80a6-975511c7907f",
+              "parentUUID": "a97f34d6-d502-4a05-9a85-1bb49b391e18",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test Case 3 - Login Positive Test Case",
+              "fullTitle": "Google Search Test Test Case 3 - Login Positive Test Case",
+              "timedOut": false,
+              "duration": 906,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let inputUsername = await driver.findElement(By.css('[data-test=\"username\"]')) \nlet inputPassword = await driver.findElement(By.xpath('//*[@data-test=\"password\"]'))\nlet buttonLogin = await driver.findElement(By.className('submit-button btn_action'))\nawait inputUsername.sendKeys('standard_user')\nawait inputPassword.sendKeys('secret_sauce')\nawait buttonLogin.click()\nawait driver.wait(until.urlContains('/inventory.html'), 2000, 'Login failed: did not redirect to inventory page within 2 seconds.');\n    let pageTitle = await driver.getTitle();\n    assert.strictEqual(pageTitle, 'Swag Labs', 'Page title should be \"Swag Labs\" after successful login.');\n    console.log('Login berhasil dan halaman \"Swag Labs\" terbuka.');",
+              "err": {},
+              "uuid": "0227a76e-99bd-4f40-9888-63923fbcd798",
+              "parentUUID": "a97f34d6-d502-4a05-9a85-1bb49b391e18",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Test Case 4 - Sort Product Z - A",
+              "fullTitle": "Google Search Test Test Case 4 - Sort Product Z - A",
+              "timedOut": false,
+              "duration": 582,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let inputUsername = await driver.findElement(By.css('[data-test=\"username\"]'))\nlet inputPassword = await driver.findElement(By.xpath('//*[@data-test=\"password\"]'))\nlet buttonLogin = await driver.findElement(By.className('submit-button btn_action'))\nawait inputUsername.sendKeys('standard_user')\nawait inputPassword.sendKeys('secret_sauce')\nawait buttonLogin.click()\n    await driver.wait(until.urlContains('/inventory.html'), 2000, 'Login failed within 2 seconds.');\n    let pageTitle = await driver.getTitle();\n    assert.strictEqual(pageTitle, 'Swag Labs', 'Page title \"Swag Labs\" after successful login.');\n    console.log('Login berhasil');\n        const optionZa = await driver.findElement(By.xpath(\"//select[@class='product_sort_container']/option[@value='za']\"));\n        await optionZa.click();\n        let product_sort_container = await driver.findElement(By.xpath('//div[normalize-space()=\"Test.allTheThings() T-Shirt (Red)\"]'));\n            let isProductDisplayed = await product_sort_container.isDisplayed();\n            assert.strictEqual(isProductDisplayed, true, 'The \"Test.allTheThings() T-Shirt (Red)\" product should be displayed.');\n            console.log('Berhasil sort produk \"Name (Z to A)\".');",
+              "err": {},
+              "uuid": "2aa267a8-51b4-495c-b22e-79cb7beb3985",
+              "parentUUID": "a97f34d6-d502-4a05-9a85-1bb49b391e18",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1a8f5893-4f71-4cf6-bd47-092375f7cf14",
+            "a3014615-9dc7-41cc-80a6-975511c7907f",
+            "0227a76e-99bd-4f40-9888-63923fbcd798",
+            "2aa267a8-51b4-495c-b22e-79cb7beb3985"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1925,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 60000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
